@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Walter Media Studio - Producción y Medios Digitales">
+  <title>waltermediastudio.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: lowercase;
+      background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+      margin-bottom: 1rem;
+      user-select: none;
+      animation: shine 6s ease-in-out infinite alternate;
+    }
+
+    .brand-subtitle {
+      font-size: clamp(0.75rem, 2vw, 1.1rem);
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #d4af37;
+      opacity: 0.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      margin: 0 auto 2.5rem auto;
+    }
+
+    .action-btn {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      color: #000000;
+      background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa771c 100%);
+      border: 1px solid #d4af37;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+    }
+
+    .action-btn:hover {
+      box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5);
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 1.5rem;
+      width: 100%;
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: #555555;
+      z-index: 2;
+    }
+
+    @keyframes shine {
+      0% {
+        filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));
+      }
+      100% {
+        filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <h1 class="brand-title">waltermediastudio.com</h1>
+    <p class="brand-subtitle">Media & Creative Production</p>
+    <div class="divider"></div>
+    <a href="#contacto" class="action-btn">Ingresar</a>
+  </main>
+
+  <footer class="footer">
+    &copy; 2026 WALTER MEDIA STUDIO. TODOS LOS DERECHOS RESERVADOS.
+  </footer>
+
+</body>
+</html>
