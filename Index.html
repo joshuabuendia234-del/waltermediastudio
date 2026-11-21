@@ -15,7 +15,7 @@
     }
 
     body {
-      background-color: #000000;
+      background-color: #050505;
       color: #ffffff;
       min-height: 100vh;
       display: flex;
@@ -30,9 +30,9 @@
     body::before {
       content: "";
       position: absolute;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      width: clamp(350px, 60vw, 750px);
+      height: clamp(350px, 60vw, 750px);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -44,63 +44,83 @@
       position: relative;
       z-index: 2;
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1.5rem;
       max-width: 900px;
       width: 100%;
     }
 
     .logo-siglas {
       font-family: 'Cinzel', serif;
-      font-size: clamp(5rem, 18vw, 12rem);
+      font-size: clamp(4.5rem, 16vw, 11rem);
       font-weight: 900;
       letter-spacing: 0.12em;
       line-height: 1;
       background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.4));
+      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.35));
       user-select: none;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       padding-left: 0.12em;
     }
 
     .divider {
-      width: 120px;
+      width: 140px;
       height: 2px;
       background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      margin: 0 auto 1.8rem auto;
+      margin: 0 auto 1.6rem auto;
     }
 
     .subtitulo {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+      font-size: clamp(1rem, 3vw, 1.8rem);
       font-weight: 600;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa771c 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.25));
       user-select: none;
     }
 
-    /* ESTILOS DEL BOTÓN DE LA MONEDA */
+    /* BOTÓN MONEDA CON EFECTO DE LEVITACIÓN Y BRILLO */
     .boton-moneda {
       display: inline-block;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       cursor: pointer;
       text-decoration: none;
+      outline: none;
+      animation: flotar 4s ease-in-out infinite;
+      perspective: 1000px;
     }
 
     .boton-moneda img {
-      width: 160px;
+      width: clamp(120px, 20vw, 170px);
       height: auto;
-      transition: transform 0.3s ease, filter 0.3s ease;
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
     }
 
     .boton-moneda:hover img {
-      transform: scale(1.08);
-      filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8));
+      transform: scale(1.1) rotate(5deg);
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(243, 229, 171, 0.9));
+    }
+
+    .boton-moneda:active img {
+      transform: scale(0.95);
+    }
+
+    @keyframes flotar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
     }
 
     .footer {
@@ -124,9 +144,8 @@
     <div class="divider"></div>
     <p class="subtitulo">Walter Media Studio</p>
 
-    <!-- AQUÍ ESTÁ TU MONEDA ENVUELTA COMO BOTÓN DE ACCESO -->
-    <a href="#" class="boton-moneda">
-      <img src="Gemini_Generated_Image_51vo9551vo9551vo-removebg-preview.png" alt="Acceso">
+    <a href="#contacto" class="boton-moneda" aria-label="Ingresar a Walter Media Studio">
+      <img src="Gemini_Generated_Image_51vo9551vo9551vo-removebg-preview.png" alt="Acceso Walter Media Studio">
     </a>
   </main>
 
