@@ -47,11 +47,14 @@
       padding: 2rem;
       max-width: 900px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .logo-siglas {
       font-family: 'Cinzel', serif;
-      font-size: clamp(5rem, 18vw, 12rem);
+      font-size: clamp(4rem, 14vw, 9rem);
       font-weight: 900;
       letter-spacing: 0.12em;
       line-height: 1;
@@ -60,7 +63,7 @@
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.4));
       user-select: none;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       padding-left: 0.12em;
     }
 
@@ -68,12 +71,12 @@
       width: 120px;
       height: 2px;
       background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      margin: 0 auto 1.8rem auto;
+      margin: 0 auto 1.5rem auto;
     }
 
     .subtitulo {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+      font-size: clamp(1rem, 2.8vw, 1.8rem);
       font-weight: 600;
       letter-spacing: 0.35em;
       text-transform: uppercase;
@@ -82,6 +85,63 @@
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
       user-select: none;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ====== BOTÓN DE LA MONEDA ====== */
+    .coin-button-wrapper {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .coin-img {
+      width: clamp(130px, 20vw, 190px);
+      height: auto;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.45));
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+      animation: floatCoin 4s ease-in-out infinite;
+    }
+
+    /* Efecto al pasar el cursor */
+    .coin-button-wrapper:hover .coin-img {
+      transform: scale(1.1) rotate(6deg);
+      filter: drop-shadow(0 0 35px rgba(243, 229, 171, 0.85)) brightness(1.1);
+    }
+
+    /* Efecto al presionar */
+    .coin-button-wrapper:active .coin-img {
+      transform: scale(0.95);
+    }
+
+    .coin-hint {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      color: #f3e5ab;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.3s ease, letter-spacing 0.3s ease;
+    }
+
+    .coin-button-wrapper:hover .coin-hint {
+      opacity: 1;
+      letter-spacing: 0.4em;
+      color: #fff;
+    }
+
+    /* Animación flotante suave */
+    @keyframes floatCoin {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
     .footer {
@@ -104,6 +164,12 @@
     <h1 class="logo-siglas">WMS</h1>
     <div class="divider"></div>
     <p class="subtitulo">Walter Media Studio</p>
+
+    <!-- BOTÓN DE ACCESO CON TU MONEDA -->
+    <a href="inicio.html" class="coin-button-wrapper" title="Entrar al sitio">
+      <img src="Gemini_Generated_Image_51vo9551vo9551vo-removebg-preview.png" alt="Ingresar a Walter Media Studio" class="coin-img">
+      <span class="coin-hint">ENTRAR</span>
+    </a>
   </main>
 
   <footer class="footer">
