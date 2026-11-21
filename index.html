@@ -3,36 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walter Media Studio</title>
+  <title>Walter Media Studio | Producción Audiovisual de Lujo</title>
+  
+  <!-- Fuentes Google: Cinzel y Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
+    /* VARIABLES GLOBALES */
+    :root {
+      --gold-primary: #d4af37;
+      --gold-light: #fdf2a6;
+      --gold-dark: #aa771c;
+      --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+      --bg-dark: #050505;
+      --card-bg: rgba(20, 20, 20, 0.7);
+      --border-gold: rgba(212, 175, 55, 0.25);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: #050505;
+      background-color: var(--bg-dark);
       color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ---------------- HERO / BIENVENIDA ---------------- */
+    .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: 'Montserrat', sans-serif;
-      overflow-x: hidden;
       position: relative;
+      text-align: center;
+      padding: 2rem 1.5rem;
     }
 
-    body::before {
+    .hero::before {
       content: "";
       position: absolute;
       width: clamp(350px, 60vw, 750px);
       height: clamp(350px, 60vw, 750px);
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, rgba(0, 0, 0, 0) 70%);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -40,26 +62,22 @@
       pointer-events: none;
     }
 
-    .container {
+    .hero-content {
       position: relative;
       z-index: 2;
-      text-align: center;
-      padding: 2rem 1.5rem;
-      max-width: 900px;
-      width: 100%;
     }
 
     .logo-siglas {
       font-family: 'Cinzel', serif;
-      font-size: clamp(4.5rem, 16vw, 11rem);
+      font-size: clamp(5rem, 18vw, 11rem);
       font-weight: 900;
       letter-spacing: 0.12em;
       line-height: 1;
-      background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+      background: var(--gold-gradient);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.35));
+      filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.4));
       user-select: none;
       margin-bottom: 1.2rem;
       padding-left: 0.12em;
@@ -68,13 +86,13 @@
     .divider {
       width: 140px;
       height: 2px;
-      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
       margin: 0 auto 1.6rem auto;
     }
 
     .subtitulo {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1rem, 3vw, 1.8rem);
+      font-size: clamp(1.1rem, 3.2vw, 1.9rem);
       font-weight: 600;
       letter-spacing: 0.35em;
       text-transform: uppercase;
@@ -82,75 +100,532 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.25));
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
       user-select: none;
     }
 
-    /* BOTÓN MONEDA CON EFECTO DE LEVITACIÓN Y BRILLO */
+    /* BOTÓN MONEDA CON RECORTE CIRCULAR AUTOMÁTICO */
     .boton-moneda {
+      position: relative;
       display: inline-block;
       margin-top: 2.5rem;
-      cursor: pointer;
       text-decoration: none;
-      outline: none;
       animation: flotar 4s ease-in-out infinite;
-      perspective: 1000px;
+      transition: transform 0.4s ease;
     }
 
-    .boton-moneda img {
-      width: clamp(120px, 20vw, 170px);
-      height: auto;
+    .moneda-wrapper {
+      width: clamp(140px, 20vw, 180px);
+      height: clamp(140px, 20vw, 180px);
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.35);
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .moneda-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
       display: block;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
-      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
     }
 
-    .boton-moneda:hover img {
-      transform: scale(1.1) rotate(5deg);
-      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(243, 229, 171, 0.9));
+    .boton-moneda:hover {
+      transform: scale(1.08) translateY(-6px);
     }
 
-    .boton-moneda:active img {
-      transform: scale(0.95);
+    .boton-moneda:hover .moneda-wrapper {
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 45px rgba(243, 229, 171, 0.75);
+    }
+
+    .indicador-scroll {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      opacity: 0.8;
     }
 
     @keyframes flotar {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-8px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
-    .footer {
-      position: absolute;
-      bottom: 1.5rem;
+    /* ---------------- NAVEGACIÓN FIJA ---------------- */
+    .navbar {
+      position: sticky;
+      top: 0;
       width: 100%;
-      text-align: center;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      color: #aa771c;
-      opacity: 0.7;
-      z-index: 2;
+      padding: 1.2rem 2.5rem;
+      background: rgba(5, 5, 5, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #cccccc;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-primary);
+    }
+
+    /* ---------------- SECCIONES GENERALES ---------------- */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .seccion-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .seccion-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.15em;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.8rem;
+    }
+
+    .seccion-bajada {
+      color: #999;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ---------------- SERVICIOS ---------------- */
+    .grid-servicios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .card-servicio {
+      background: var(--card-bg);
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .card-servicio:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
+    }
+
+    .card-icono {
+      font-size: 2rem;
+      color: var(--gold-primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .card-servicio h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      color: #f7f7f7;
+    }
+
+    .card-servicio p {
+      color: #aaaaaa;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    /* ---------------- PORTAFOLIO ---------------- */
+    .grid-portafolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .item-portafolio {
+      position: relative;
+      height: 380px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #111;
+    }
+
+    .item-portafolio img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease, filter 0.6s ease;
+      filter: grayscale(40%);
+    }
+
+    .item-portafolio:hover img {
+      transform: scale(1.08);
+      filter: grayscale(0%);
+    }
+
+    .item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.95) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.8rem;
+    }
+
+    .item-overlay span {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .item-overlay h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------------- SOBRE NOSOTROS ---------------- */
+    .sobre-contenido {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .sobre-texto h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .sobre-texto p {
+      color: #bbbbbb;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .metricas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .metrica-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-gold);
+      padding: 2rem;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .metrica-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      color: var(--gold-primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .metrica-card p {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+    }
+
+    /* ---------------- CONTACTO ---------------- */
+    .contacto-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border-gold);
+      padding: 3rem 2.5rem;
+      border-radius: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 1rem;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold-primary);
+    }
+
+    .btn-dorado {
+      width: 100%;
+      padding: 1rem 2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #000;
+      background: var(--gold-gradient);
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn-dorado:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.15) drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+    }
+
+    /* ---------------- FOOTER ---------------- */
+    footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-contenido { grid-template-columns: 1fr; }
+      .navbar { justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <main class="container">
-    <h1 class="logo-siglas">WMS</h1>
-    <div class="divider"></div>
-    <p class="subtitulo">Walter Media Studio</p>
+  <!-- HERO SECTION CON MONEDA -->
+  <header class="hero" id="inicio">
+    <div class="hero-content">
+      <h1 class="logo-siglas">WMS</h1>
+      <div class="divider"></div>
+      <p class="subtitulo">Walter Media Studio</p>
 
-    <a href="#contacto" class="boton-moneda" aria-label="Ingresar a Walter Media Studio">
-      <img src="Gemini_Generated_Image_51vo9551vo9551vo-removebg-preview.png" alt="Acceso Walter Media Studio">
-    </a>
-  </main>
+      <!-- BOTÓN MONEDA QUE BAJA A SERVICIOS -->
+      <a href="#servicios" class="boton-moneda" aria-label="Explorar Walter Media Studio">
+        <div class="moneda-wrapper">
+          <!-- Coloca el nombre de tu archivo de imagen aquí -->
+          <img src="tu-moneda.png" alt="Acceso Walter Media Studio 2026">
+        </div>
+      </a>
+      <div class="indicador-scroll">Haz clic en la moneda para entrar</div>
+    </div>
+  </header>
 
-  <footer class="footer">
-    &copy; 2026 WALTER MEDIA STUDIO
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar">
+    <a href="#inicio" class="nav-logo">WMS</a>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#portafolio">Portafolio</a></li>
+      <li><a href="#sobre-nosotros">El Estudio</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="seccion-header">
+      <h2 class="seccion-titulo">Servicios Exclusivos</h2>
+      <div class="divider"></div>
+      <p class="seccion-bajada">Soluciones audiovisuales de alta gama diseñadas para marcas, artistas y creadores exigentes.</p>
+    </div>
+
+    <div class="grid-servicios">
+      <div class="card-servicio">
+        <div class="card-icono">✦</div>
+        <h3>Producción Cinematográfica</h3>
+        <p>Comerciales, videoclips y cortometrajes con estándares narrativos y ópticas de cine digital.</p>
+      </div>
+
+      <div class="card-servicio">
+        <div class="card-icono">✦</div>
+        <h3>Fotografía Comercial</h3>
+        <p>Sesiones editoriales, retratos de marca y fotografía de producto con iluminación escenográfica.</p>
+      </div>
+
+      <div class="card-servicio">
+        <div class="card-icono">✦</div>
+        <h3>Color Grading & VFX</h3>
+        <p>Postproducción avanzada, corrección de color Davinci Resolve y masterización en 4K HDR.</p>
+      </div>
+
+      <div class="card-servicio">
+        <div class="card-icono">✦</div>
+        <h3>Dirección Creativa</h3>
+        <p>Desarrollo conceptual, guionización y dirección de arte para posicionar marcas en la élite visual.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTAFOLIO -->
+  <section id="portafolio">
+    <div class="seccion-header">
+      <h2 class="seccion-titulo">Trabajos Destacados</h2>
+      <div class="divider"></div>
+      <p class="seccion-bajada">Una muestra de nuestras obras más recientes en fotografía y dirección audiovisual.</p>
+    </div>
+
+    <div class="grid-portafolio">
+      <div class="item-portafolio">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80" alt="Campaña Comercial">
+        <div class="item-overlay">
+          <span>Comercial / Spot</span>
+          <h4>Aura Elegance</h4>
+        </div>
+      </div>
+
+      <div class="item-portafolio">
+        <img src="https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?auto=format&fit=crop&w=800&q=80" alt="Videoclip Musical">
+        <div class="item-overlay">
+          <span>Música / Video</span>
+          <h4>Golden Horizon</h4>
+        </div>
+      </div>
+
+      <div class="item-portafolio">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80" alt="Editorial de Moda">
+        <div class="item-overlay">
+          <span>Editorial de Moda</span>
+          <h4>Noir & Gold 2026</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="sobre-nosotros">
+    <div class="sobre-contenido">
+      <div class="sobre-texto">
+        <h3>Llevamos la Visión de Cada Proyecto al Estándar de Oro</h3>
+        <p>En <strong>Walter Media Studio</strong> no solo capturamos imágenes; creamos experiencias visuales imborrables. Combinamos tecnología de punta con una rigurosa dirección de arte inspirada en la cinematografía clásica.</p>
+        <p>Cada encuadre, iluminación y corte de edición se planifica para transmitir valor, prestigio y emoción genuina.</p>
+      </div>
+
+      <div class="metricas">
+        <div class="metrica-card">
+          <h4>+150</h4>
+          <p>Proyectos Finalizados</p>
+        </div>
+        <div class="metrica-card">
+          <h4>4K/8K</h4>
+          <p>Flujo Cinematográfico</p>
+        </div>
+        <div class="metrica-card">
+          <h4>100%</h4>
+          <p>Fidelidad y Color</p>
+        </div>
+        <div class="metrica-card">
+          <h4>2026</h4>
+          <p>Edición Oficial</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="seccion-header">
+      <h2 class="seccion-titulo">Inicia Tu Proyecto</h2>
+      <div class="divider"></div>
+      <p class="seccion-bajada">Agenda una sesión de preproducción o solicita una cotización personalizada.</p>
+    </div>
+
+    <div class="contacto-wrapper">
+      <form onsubmit="event.preventDefault(); alert('¡Gracias por comunicarte con Walter Media Studio! Te responderemos a la brevedad.');">
+        <div class="form-group">
+          <label for="nombre">Nombre o Empresa</label>
+          <input type="text" id="nombre" placeholder="Tu nombre..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo Electrónico</label>
+          <input type="email" id="correo" placeholder="correo@ejemplo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Detalles del Proyecto</label>
+          <textarea id="mensaje" rows="4" placeholder="Cuéntanos sobre tu idea, fechas o presupuesto..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-dorado">Enviar Solicitud</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 WALTER MEDIA STUDIO. TODOS LOS DERECHOS RESERVADOS.</p>
   </footer>
 
 </body>
